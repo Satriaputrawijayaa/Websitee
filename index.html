@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Will You Be My Girlfriend?</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+
+<!-- Page 1 -->
+<div id="page1" class="page active">
+    <h1>Will You Be My Girlfriend?</h1>
+    <button id="yesBtn" class="btn">Yes, I Do!</button>
+    <button id="noBtn" class="btn random-btn">No. Leave me alone.</button>
+</div>
+
+<!-- Page 2 -->
+<div id="page2" class="page">
+    <h1>Let's Schedule Our Date!</h1>
+    <form id="dateForm">
+        <label for="date">Pick a Date: </label><input type="date" id="date" required><br>
+        <label for="time">Pick a Time: </label><input type="time" id="time" required><br>
+        <label for="activity">Choose Activity: </label>
+        <select id="activity" required>
+            <option value="MEDAN">MEDAN</option>
+            <option value="TAMIANG">TAMIANG</option>
+            <option value="KUALA SIMPANG">KUALA SIMPANG</option>
+        </select><br>
+        <button type="submit" class="btn">Continue</button>
+    </form>
+</div>
+
+<!-- Page 3 -->
+<div id="page3" class="page">
+    <h1>Your Date Schedule</h1>
+    <div id="summary"></div>
+</div>
+
+<script>
+    const page1 = document.getElementById("page1");
+    const page2 = document.getElementById("page2");
+    const page3 = document.getElementById("page3");
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const dateForm = document.getElementById("dateForm");
+    const summaryDiv = document.getElementById("summary");
+
+    // Heart Animation Following Cursor
+    document.body.addEventListener("mousemove", function(e) {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.style.left = `${e.pageX - 10}px`;
+        heart.style.top = `${e.pageY - 10}px`;
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 1000);
+    });
+
+    // Page 1 - Handling "Yes" and "No" Button
+    yesBtn.addEventListener("click", () => {
+        page1.classList.remove("active");
+        page2.classList.add("active");
+    });
+
+    noBtn.addEventListener("mouseover", function() {
+        const randomX = Math.floor(Math.random() * (window.innerWidth - noBtn.offsetWidth));
+        const randomY = Math.floor(Math.random() * (window.innerHeight - noBtn.offsetHeight));
+        noBtn.style.left = `${randomX}px`;
+        noBtn.style.top = `${randomY}px`;
+    });
+
+    // Page 2 - Handling Date Form
+    dateForm.addEventListener("submit", function(e) {
+        e.preventDefault();
+        const date = document.getElementById("date").value;
+        const time = document.getElementById("time").value;
+        const activity = document.getElementById("activity").value;
+        page2.classList.remove("active");
+        page3.classList.add("active");
+        summaryDiv.innerHTML = `
+            <p>We are going to have a date on: <strong>${date}</strong> at <strong>${time}</strong>.</p>
+            <p>We are going to enjoy: <strong>${activity}</strong>.</p>
+        `;
+    });
+</script>
+
+</body>
+</html>

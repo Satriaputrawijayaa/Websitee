@@ -1,0 +1,80 @@
+
+        /* General Page Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8d7f9;
+            color: #ff3b8b;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin: 20px;
+        }
+
+        .btn {
+            padding: 20px;
+            font-size: 1.5em;
+            background-color: #ff3b8b;
+            border: none;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #ff69b4;
+        }
+
+        .random-btn {
+            position: absolute;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            clip-path: circle(50%);
+            animation: heart-animation 1s infinite;
+        }
+
+        @keyframes heart-animation {
+            0% {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5) translateY(-30px);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1) translateY(0);
+                opacity: 0;
+            }
+        }
+
+        .hidden {
+            visibility: hidden;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        audio {
+            position: absolute;
+            top: -9999px;  /* Hide audio player */
+        }
